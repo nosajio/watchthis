@@ -1,0 +1,9 @@
+{
+  "name": "watchthis",
+  "version": "1.0.0",
+  "description": "A simple app for making watch lists ",
+  "main": "index.js",
+  "repository": "https://github.com/nosajj/watchthis",
+  "author": "jason howmans <jason@nosaj.io>",
+  "license": "MIT"
+}
