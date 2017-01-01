@@ -4,7 +4,7 @@ const Main = React.createClass({
   render () {
     return (
       <section className="main-view">
-        Yo
+        Yoyo
       </section>
     )
   }

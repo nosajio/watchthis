@@ -20,6 +20,8 @@ if (env === 'production') {
   app.use( compression() );
 }
 
+app.use('/api', require('./api'));
+
 // Tell express where the base should be for static files,
 // like images, js, css, index.html etc
 app.use(express.static(serverRoot));
