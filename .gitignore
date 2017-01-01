@@ -1,3 +1,8 @@
+# This app
+dist
+.DS_Store
+.env
+
 # Logs
 logs
 *.log
@@ -45,4 +50,3 @@ jspm_packages
 
 # Yarn Integrity file
 .yarn-integrity
-
