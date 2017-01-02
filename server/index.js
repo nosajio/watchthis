@@ -27,11 +27,13 @@ app.use('/api', require('./api'));
 app.use(express.static(serverRoot));
 
 // Configure logging
-const logDir = path.join(__dirname, 'logs');
-// Create the logs directory if it doesn't already exist
-fs.existsSync(logDir) || fs.mkdirSync(logDir);
-const logStream = fs.createWriteStream(path.join(logDir, 'access.log'), {flags: 'a'});
-app.use(morgan('combined', {stream: logStream}));
+if (env === 'production') {
+  const logDir = path.join(__dirname, 'logs');
+  // Create the logs directory if it doesn't already exist
+  fs.existsSync(logDir) || fs.mkdirSync(logDir);
+  const logStream = fs.createWriteStream(path.join(logDir, 'access.log'), {flags: 'a'});
+  app.use(morgan('combined', {stream: logStream}));
+}
 
 
 // Alwsays send the index file for routes in the react app. Let React handle the routing
