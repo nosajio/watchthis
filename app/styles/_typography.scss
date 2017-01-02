@@ -1,3 +1,11 @@
+$ff-headings: 'korolev-compressed', 'Helvetica Neue', sans-serif;
+$ff-body: 'Anonymous Pro', monospace, sans-serif;
+
 body {
-  font: 22px/1.5 monospace, serif;
+  font: 22px/1.5 $ff-body;
+}
+
+h1, h2, h3 {
+  font-family: $ff-headings;
+  font-weight: 700;
 }

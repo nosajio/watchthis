@@ -15,7 +15,9 @@ const MoviesList = (props) => {
   if (! movies) {
     return (
       <div className="movies-list">
-        <h2>You don't have any saved movies yet. Use the search bar above to add some!</h2>
+        <div className="movies-list__empty">
+          <h2>You don't have any saved movies yet. Use the search bar above to add some!</h2>
+        </div>
       </div>
     );
   }

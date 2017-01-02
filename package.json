@@ -31,6 +31,7 @@
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "lodash": "^4.17.4",
+    "mongodb": "^2.2.16",
     "morgan": "^1.7.0",
     "parallelshell": "^2.0.0",
     "react": "^15.4.1",
