@@ -2,6 +2,7 @@ const fs          = require('fs');
 const path        = require('path');
 const morgan      = require('morgan');
 const express     = require('express');
+const bodyParser  = require('body-parser');
 const compression = require('compression');
 
 module.exports = bootApplication;
@@ -17,11 +18,15 @@ function bootApplication(env, port) {
     app.use( compression() );
   }
 
+  // Use body-parser to parse all payload data
+  app.use(bodyParser.json());
+
   app.use('/api', require('./api'));
 
   // Tell express where the base should be for static files,
   // like images, js, css, index.html etc
   app.use(express.static(serverRoot));
+
 
   // Configure logging
   if (env === 'production') {

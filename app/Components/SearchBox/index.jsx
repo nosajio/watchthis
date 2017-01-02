@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import './search-box.scss';
 import search from '../../services/searchService';
+import list from '../../services/listService';
 import debounce from '../../helpers/debounce';
 
 const SearchBox = React.createClass({
@@ -40,6 +41,10 @@ const SearchBox = React.createClass({
     this.setState({ activeResult: id });
   },
 
+  handleAddToList (item) {
+    list.add(item);
+  },
+
   resultEl (result, index) {
     const imageBase = 'http://image.tmdb.org/t/p/w185/';
     const {activeResult} = this.state;
@@ -59,7 +64,7 @@ const SearchBox = React.createClass({
         <span className="search-result__title">
           <h3>{result.title}</h3>
         </span>
-        <span className="result-options">
+        <span onClick={this.handleAddToList.bind(this, result)} className="result-options">
           <span className="result-options__add">Add to list</span>
         </span>
       </li>
@@ -80,7 +85,8 @@ const SearchBox = React.createClass({
             {searchResults.map(this.resultEl)}
           </ul>
         ) : ! _.isEmpty(searchString) && ! working ? (
-          <span className="search-no-results">There are no results for <strong>&quot;{searchString}&quot;</strong> (its not you its me)</span>
+          <span className="search-no-results">
+            There are no results for <strong>&quot;{searchString}&quot;</strong> (its not you, its me.)</span>
         ) : null}
       </div>
     )
