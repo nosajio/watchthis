@@ -1,3 +1,4 @@
+import {default as _} from 'lodash/core';
 import React, { PropTypes } from 'react'
 
 import './search-box.scss';
@@ -5,21 +6,64 @@ import search from '../../services/searchService';
 import debounce from '../../helpers/debounce';
 
 const SearchBox = React.createClass({
+  getInitialState () {
+    return {
+      searchString: null,
+      searchResults: [],
+      activeResult: null,
+      working: null,
+    };
+  },
 
   handleSearchResults (res) {
-    console.log(res);
+    if (_.isEmpty(res.results)) {
+      return this.setState({searchResults: [], working: false});
+    }
+    const resultCount = 10;
+    this.setState({
+      searchResults: res.results.slice(0, resultCount),
+      working: false,
+    });
   },
 
   handleRunSearch (event) {
+    const searchValue = event.target.value;
     debounce(300, () => {
-      const searchValue = event.target.value;
+      this.setState({ searchString: searchValue, working: true });
       search
         .movies(searchValue)
         .then(this.handleSearchResults);
     });
   },
 
+  handleHover (id) {
+    this.setState({ activeResult: id });
+  },
+
+  resultEl (result, index) {
+    const imageBase = 'http://image.tmdb.org/t/p/w185/';
+    const {activeResult} = this.state;
+    return (
+      <li
+        className={`search-result ${activeResult === result.id ? 'search-result--is-active' : ''}`}
+        key={index}
+        onMouseOver={this.handleHover.bind(this, result.id)}
+        onMouseOut={this.handleHover.bind(this, null)}>
+        <span className="search-result__poster">
+          <img src={`${imageBase}/${result.poster_path}`} alt=""/>
+        </span>
+        <span className="search-result__title">
+          <h3>{result.title}</h3>
+        </span>
+        <span className="result-options">
+          <span className="result-options__add">Add to list</span>
+        </span>
+      </li>
+    )
+  },
+
   render () {
+    const {searchResults, searchString, working} = this.state;
     return (
       <div className="search-box">
         <input
@@ -27,6 +71,13 @@ const SearchBox = React.createClass({
           placeholder="Search for a movie..."
           type="text"
           className="search-box__input"/>
+        {searchResults.length > 0 ? (
+          <ul className="search-results">
+            {searchResults.map(this.resultEl)}
+          </ul>
+        ) : ! _.isEmpty(searchString) && ! working ? (
+          <span className="search-no-results">There are no results for <strong>&quot;{searchString}&quot;</strong> (its not you its me)</span>
+        ) : null}
       </div>
     )
   }

@@ -18,5 +18,4 @@ function handleSearchRequest(req, res) {
       return res.json(JSON.parse(body));
     }
   }
-
 }
