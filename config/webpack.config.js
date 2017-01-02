@@ -30,4 +30,5 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('watchthis.css')
   ],
+  devtool: 'source-map',
 };

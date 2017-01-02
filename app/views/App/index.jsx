@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 
 const App = React.createClass({
   render () {
-    console.log(this.props);
     const {children} = this.props;
 
     if (! children) {
