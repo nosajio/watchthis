@@ -6,6 +6,7 @@ import MoviesList from '../../components/MoviesList';
 
 const MainDom = (props) => {
   const {state} = props;
+  const {userList} = state;
 
   return (
     <section className="main-view">
@@ -13,7 +14,7 @@ const MainDom = (props) => {
         <SearchBox addToList={props.handleAddToList}/>
       </section>
       <section className="user-watch-list">
-        <MoviesList movies={state.userMovies}/>
+        <MoviesList list={userList}/>
       </section>
     </section>
   )

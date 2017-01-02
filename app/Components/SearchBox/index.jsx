@@ -50,7 +50,11 @@ const SearchBox = React.createClass({
         onMouseOver={this.handleHover.bind(this, result.id)}
         onMouseOut={this.handleHover.bind(this, null)}>
         <span className="search-result__poster">
-          <img src={`${imageBase}/${result.poster_path}`} alt=""/>
+            {result.poster_path ? (
+              <img src={`${imageBase}/${result.poster_path}`} alt=""/>
+            ) : (
+              <span className="poster-placeholder"></span>
+            )}
         </span>
         <span className="search-result__title">
           <h3>{result.title}</h3>

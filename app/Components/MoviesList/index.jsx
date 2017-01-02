@@ -1,18 +1,11 @@
-import './movies-list.scss';
 import React, { PropTypes } from 'react'
 
+import './movies-list.scss';
+
 const MoviesList = (props) => {
-  const {movies} = props;
+  const {list} = props;
 
-  const movieEl = (movie, index) => {
-    return (
-      <li className="movies-list__movie">
-        {movie.title}
-      </li>
-    );
-  };
-
-  if (! movies) {
+  if (! list) {
     return (
       <div className="movies-list">
         <div className="movies-list__empty">
@@ -21,6 +14,26 @@ const MoviesList = (props) => {
       </div>
     );
   }
+
+  const movies = list.content;
+
+  const movieEl = (movie, index) => {
+    const imageBase = 'http://image.tmdb.org/t/p/w300/';
+    return (
+      <li key={index} className="movies-list__movie">
+        <span className="movies-list__movie-cover">
+          {movie.poster_path ? (
+            <img src={`${imageBase}${movie.poster_path}`} alt=""/>
+          ) : (
+            <span className="movie-cover-placeholder"></span>
+          )}
+        </span>
+        <span className="movies-list__movie-info">
+          <h2>{movie.title}</h2>
+        </span>
+      </li>
+    );
+  };
 
   return (
     <div className="movies-list">

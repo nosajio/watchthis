@@ -41,6 +41,17 @@
   &--is-active {
     border-color: black;
   }
+
+  &__poster,
+  &__title {
+    display: block;
+  }
+
+  &__poster .poster-placeholder {
+    display: block;
+    height: 278px;
+    background: #525252;
+  }
 }
 
 .result-options {
