@@ -7,6 +7,10 @@ import list from '../../services/listService';
 import debounce from '../../helpers/debounce';
 
 const SearchBox = React.createClass({
+  propTypes: {
+    isBusy: PropTypes.func.isRequired,
+  },
+
   getInitialState () {
     return {
       searchString: null,
@@ -18,9 +22,11 @@ const SearchBox = React.createClass({
 
   handleSearchResults (res) {
     if (_.isEmpty(res.results)) {
+      this.props.isBusy(false);
       return this.setState({searchResults: [], working: false});
     }
     const resultCount = 10;
+    this.props.isBusy(false);
     this.setState({
       searchResults: res.results.slice(0, resultCount),
       working: false,
@@ -30,6 +36,7 @@ const SearchBox = React.createClass({
   handleRunSearch (event) {
     const searchValue = event.target.value;
     debounce(300, () => {
+      this.props.isBusy(true);
       this.setState({ searchString: searchValue, working: true });
       search
         .movies(searchValue)

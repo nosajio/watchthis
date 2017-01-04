@@ -11,12 +11,12 @@ const MainDom = (props) => {
 
   return (
     <section className="main-view">
-      <UpTop/>
+      <UpTop busy={state.busy}/>
       <section className="search-box-container">
-        <SearchBox addToList={props.handleAddToList}/>
+        <SearchBox isBusy={props.busyCallback} addToList={props.handleAddToList}/>
       </section>
       <section className="user-watch-list">
-        <MoviesList list={userList}/>
+        <MoviesList isBusy={props.busyCallback} list={userList}/>
       </section>
     </section>
   )

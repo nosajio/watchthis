@@ -7,6 +7,7 @@ const Main = React.createClass({
   getInitialState () {
     return {
       userList: null,
+      busy: false,
     };
   },
 
@@ -18,6 +19,10 @@ const Main = React.createClass({
     listService
       .show()
       .then(userList => this.setState({userList}));
+  },
+
+  busyCallback (busy) {
+    this.setState({ busy });
   },
 
   handleAddToList () {

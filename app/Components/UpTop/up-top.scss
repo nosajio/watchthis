@@ -4,12 +4,13 @@
   width: 100%;
 
   .app-logo {
-    $logo-height-width-ratio: 1.746;
-    $logo-height: 150px;
-    display: block;
+    $logo-height-width-ratio: 1.602;
+    $logo-height: 80px;
     height: $logo-height;
     width: $logo-height * $logo-height-width-ratio;
-    background: url('../../static/img/watchthis-logo.svg') no-repeat;
-    background-size: 100% auto;
+  }
+
+  &.activity .app-logo {
+
   }
 }
