@@ -1,0 +1,15 @@
+.up-top {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .app-logo {
+    $logo-height-width-ratio: 1.746;
+    $logo-height: 150px;
+    display: block;
+    height: $logo-height;
+    width: $logo-height * $logo-height-width-ratio;
+    background: url('../../static/img/watchthis-logo.svg') no-repeat;
+    background-size: 100% auto;
+  }
+}

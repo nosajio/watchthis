@@ -1,6 +1,6 @@
 .main-view {
   position: relative;
-  padding-top: 150px;
+  padding-top: 30px;
 
   .search-box-container,
   .user-watch-list {
@@ -8,10 +8,7 @@
   }
 
   .search-box-container {
-    position: fixed;
     width: 100%;
-    top: 0;
-    left: 0;
   }
 
   .user-watch-list {

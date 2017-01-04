@@ -1,6 +1,7 @@
 import './main.scss';
 import React, { PropTypes } from 'react'
 
+import UpTop from '../../components/UpTop';
 import SearchBox from '../../components/SearchBox';
 import MoviesList from '../../components/MoviesList';
 
@@ -10,6 +11,7 @@ const MainDom = (props) => {
 
   return (
     <section className="main-view">
+      <UpTop/>
       <section className="search-box-container">
         <SearchBox addToList={props.handleAddToList}/>
       </section>
