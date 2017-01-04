@@ -11,6 +11,7 @@ const UpTop = (props) => {
       <div className="app-logo">
         <Logo busy={busy}/>
       </div>
+      <span className="app-logo-text">watchthis</span>
     </header>
   )
 }

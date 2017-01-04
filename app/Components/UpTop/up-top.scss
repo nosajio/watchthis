@@ -1,16 +1,21 @@
 .up-top {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: flex-end;
   width: 100%;
+  padding-left: 9vh;
+  padding-right: 9vh;
 
   .app-logo {
     $logo-height-width-ratio: 1.602;
     $logo-height: 80px;
+    display: inline-block;
     height: $logo-height;
     width: $logo-height * $logo-height-width-ratio;
   }
 
-  &.activity .app-logo {
-
+  .app-logo-text {
+    display: inline-block;
+    padding-left: 30px;
   }
 }
