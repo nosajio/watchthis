@@ -1,8 +1,8 @@
 const db = require('../database').db;
 
-module.exports = handleSaveRequest;
+module.exports = handleAddContentRequest;
 
-function handleSaveRequest(req, res) {
+function handleAddContentRequest(req, res) {
   if (! db) {
     return req.status(500).json({error: 'No database connection has been established'});
   }
@@ -10,7 +10,7 @@ function handleSaveRequest(req, res) {
   // Just update the only list for now
   db.collection('lists').update(
     {name: 'Nosaj List'},
-    {$push: { content: item }}
+    {$push: { towatch: item }}
   );
   res.status(201).json({ done: true, });
 }

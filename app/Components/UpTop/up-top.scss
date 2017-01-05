@@ -8,10 +8,14 @@
 
   .app-logo {
     $logo-height-width-ratio: 1.602;
-    $logo-height: 80px;
+    $logo-height: 60px;
     display: inline-block;
     height: $logo-height;
     width: $logo-height * $logo-height-width-ratio;
+
+    svg {
+      width: 100%;
+    }
   }
 
   .app-logo-text {

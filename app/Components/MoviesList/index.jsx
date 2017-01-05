@@ -15,7 +15,7 @@ const MoviesList = (props) => {
     );
   }
 
-  const movies = list.content;
+  const movies = list.towatch;
 
   const movieEl = (movie, index) => {
     const imageBase = 'http://image.tmdb.org/t/p/w300/';
