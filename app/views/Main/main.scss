@@ -1,16 +1,17 @@
+@import '../../styles/typography';
+
 .main-view {
   position: relative;
   padding-top: 30px;
 
-  .user-watch-list {
+  .user-watch-list,
+  .user-watched-list {
     padding: 9vh;
   }
 
-  .search-box-container {
-    width: 100%;
-  }
-
-  .user-watch-list {
-
+  .section-header {
+    h1, h2, h3 {
+      font: 40px $ff-body;
+    }
   }
 }

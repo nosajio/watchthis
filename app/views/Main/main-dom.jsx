@@ -7,7 +7,7 @@ import MoviesList from '../../components/MoviesList';
 
 const MainDom = (props) => {
   const {state} = props;
-  const {userList} = state;
+  const {userWatchList, userWatchedList} = state;
 
   return (
     <section className="main-view">
@@ -17,7 +17,17 @@ const MainDom = (props) => {
         </section>
       </UpTop>
       <section className="user-watch-list">
-        <MoviesList isBusy={props.busyCallback} list={userList}/>
+        <header className="section-header">
+          <h1>Your watch list</h1>
+        </header>
+        <MoviesList isBusy={props.busyCallback} list={userWatchList}/>
+      </section>
+
+      <section className="user-watched-list">
+        <header className="section-header">
+          <h1>Movies you've watched</h1>
+        </header>
+        <MoviesList isBusy={props.busyCallback} list={userWatchedList}/>
       </section>
     </section>
   )

@@ -15,15 +15,18 @@
 
   &__movie {
     display: inline-block;
-    width: 33.33%;
+    width: 25%;
+    padding: 30px 30px 0;
     text-align: center;
   }
 
   &__movie-cover {
     img {
-      display: block;
-      width: 300px;
+      display: inline-block;
       margin: 0 auto;
+      border-radius: 10px;
+      max-height: 400px;
+      width: auto;
     }
 
     .movie-cover-placeholder {

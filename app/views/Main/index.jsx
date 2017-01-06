@@ -6,19 +6,25 @@ import MainDom from './main-dom';
 const Main = React.createClass({
   getInitialState () {
     return {
-      userList: null,
+      userWatchList: null,
+      userWatchedList: null,
       busy: false,
     };
   },
 
   componentWillMount () {
-    this.fetchUserList();
+    this.fetchUserLists();
   },
 
-  fetchUserList () {
+  fetchUserLists () {
     listService
-      .show()
-      .then(userList => this.setState({userList}));
+      .get()
+      .then(userList =>
+        this.setState({
+          userWatchList: userList.towatch,
+          userWatchedList: userList.watched
+        })
+      );
   },
 
   busyCallback (busy) {
@@ -26,7 +32,7 @@ const Main = React.createClass({
   },
 
   handleAddToList () {
-    
+
   },
 
   render () {

@@ -4,9 +4,9 @@ import fetch from 'isomorphic-fetch';
 export default listService();
 
 function listService() {
-  return {show, add}
+  return {get, add}
 
-  function show() {
+  function get() {
     const request = {
       method: 'GET',
       cache: 'default',
