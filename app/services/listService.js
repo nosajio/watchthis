@@ -20,7 +20,7 @@ function listService() {
       throw new TypeError('movie argument is required');
     }
     const request = {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -28,6 +28,6 @@ function listService() {
       cache: 'default',
       mode: 'same-origin'
     };
-    fetch('/api/my-list', request).then(res => res.json());
+    fetch('/api/my-list/content', request).then(res => res.json());
   }
 }

@@ -4,14 +4,17 @@ import Logo from '../Logo';
 import './up-top.scss';
 
 const UpTop = (props) => {
-  const {busy} = props;
+  const {busy, children} = props;
 
   return (
     <header className="up-top">
       <div className="app-logo">
         <Logo busy={busy}/>
+        <span className="app-logo-text">watchthis</span>
       </div>
-      <span className="app-logo-text">watchthis</span>
+      <div className="up-top__children">
+        {children ? React.cloneElement(children) : null}
+      </div>
     </header>
   )
 }
