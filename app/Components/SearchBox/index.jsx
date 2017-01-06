@@ -17,6 +17,7 @@ const SearchBox = React.createClass({
       searchResults: [],
       activeResult: null,
       working: null,
+      focussed: false,
     };
   },
 
@@ -52,6 +53,22 @@ const SearchBox = React.createClass({
     list.add(item);
   },
 
+  handleSearchFocus (event) {
+    this.setState({focussed: true});
+  },
+
+  handleSearchBlur (event) {
+    // Basically, just reset everything
+    this.setState({
+      searchString: null,
+      searchResults: [],
+      activeResult: null,
+      working: null,
+      focussed: false,
+    });
+    this.refs['search-input'].value = '';
+  },
+
   resultEl (result, index) {
     const imageBase = 'http://image.tmdb.org/t/p/w185/';
     const {activeResult} = this.state;
@@ -79,22 +96,35 @@ const SearchBox = React.createClass({
   },
 
   render () {
-    const {searchResults, searchString, working} = this.state;
+    const {
+      focussed,
+      searchResults,
+      searchString,
+      working,
+      searchTerm
+    } = this.state;
+
     return (
-      <div className="search-box">
-        <input
-          onChange={this.handleRunSearch}
-          placeholder="Search for a movie..."
-          type="text"
-          className="search-box__input"/>
-        {searchResults.length > 0 ? (
-          <ul className="search-results">
-            {searchResults.map(this.resultEl)}
-          </ul>
-        ) : ! _.isEmpty(searchString) && ! working ? (
-          <span className="search-no-results">
-            There are no results for <strong>&quot;{searchString}&quot;</strong> (its not you, its me.)</span>
-        ) : null}
+      <div className={`search-box ${focussed ? 'search-box--is-focussed' : ''}`}>
+        <div className="search-box__inner">
+          <input
+            onChange={this.handleRunSearch}
+            onFocus={this.handleSearchFocus}
+            placeholder="Search for a movie..."
+            type="text"
+            ref="search-input"
+            className="search-box__input"/>
+          {searchResults.length > 0 && focussed ? (
+            <ul className="search-results">
+              {searchResults.map(this.resultEl)}
+            </ul>
+          ) : ! _.isEmpty(searchString) && ! working && focussed ? (
+            <span className="search-no-results">
+              There are no results for <strong>&quot;{searchString}&quot;</strong> (its not you, its me.)
+            </span>
+          ) : null}
+          <div className="search-box__exit" onClick={this.handleSearchBlur}></div>
+        </div>
       </div>
     )
   }
