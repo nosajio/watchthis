@@ -81,8 +81,20 @@
   border: 4px solid transparent;
   cursor: pointer;
 
-  &--is-active {
-    border-color: black;
+  &--is-added {
+    position: relative;
+
+    .search-result__poster::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('../../static/img/check-cover--green.svg') center no-repeat;
+      background-size: auto 100%;
+    }
   }
 
   &__poster,
@@ -111,4 +123,6 @@
   .search-result--is-active & {
     display: block;
   }
+
+  .search-result--is-added.search-result--is-active & { display: none; }
 }

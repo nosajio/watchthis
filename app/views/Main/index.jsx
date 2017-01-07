@@ -31,8 +31,19 @@ const Main = React.createClass({
     this.setState({ busy });
   },
 
-  handleAddToList () {
-
+  handleAddToList (item) {
+    const {userWatchList} = this.state;
+    const {id} = item;
+    const isDupe = userWatchList.filter(it =>
+      parseInt(id) === parseInt(it.id)
+    );
+    if (isDupe.length) {
+      console.warn('Item is duplicate, stopping.');
+      return;
+    }
+    listService.add(item);
+    userWatchList.push(item);
+    this.setState({ userWatchList });
   },
 
   render () {

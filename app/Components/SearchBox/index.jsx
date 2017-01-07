@@ -3,12 +3,13 @@ import React, { PropTypes } from 'react'
 
 import './search-box.scss';
 import search from '../../services/searchService';
-import list from '../../services/listService';
 import debounce from '../../helpers/debounce';
 
 const SearchBox = React.createClass({
   propTypes: {
+    userWatchList: PropTypes.array,
     isBusy: PropTypes.func.isRequired,
+    addToList: PropTypes.func.isRequired,
   },
 
   getInitialState () {
@@ -18,7 +19,57 @@ const SearchBox = React.createClass({
       activeResult: null,
       working: null,
       focussed: false,
+      userWatchList: [],
     };
+  },
+
+  componentWillReceiveProps (nextProps) {
+    if (! nextProps.userWatchList) {
+      return;
+    }
+    const {userWatchList} = this.props;
+    this.setState({userWatchList})
+  },
+
+  refreshResults () {
+    const {searchResults} = this.state;
+    if (! searchResults.length) {
+      return;
+    }
+    const addedResults = this.checkForAdded({ results: searchResults });
+    this.handleSearchResults(addedResults);
+  },
+
+  checkForAdded (res) {
+    if (! res.results) {
+      return res;
+    }
+    const {userWatchList} = this.state;
+    const addedResults = [];
+    userWatchList.forEach(({id}) => {
+      let isAlreadyAdded = res.results.filter(it =>
+        parseInt(it.id) === parseInt(id)
+      );
+      if (isAlreadyAdded.length) {
+        addedResults.push(parseInt(isAlreadyAdded[0].id));
+      }
+    });
+    res.results = res.results.map(it => {
+      if (addedResults.indexOf(parseInt(it.id)) > -1) {
+        it.added = true;
+      }
+      return it;
+    });
+    return res;
+  },
+
+  sortAndTrim (res) {
+    if (! res.results) {
+      return res;
+    }
+    const resultCount = 10;
+    res.results = res.results.slice(0, resultCount);
+    return res;
   },
 
   handleSearchResults (res) {
@@ -26,10 +77,9 @@ const SearchBox = React.createClass({
       this.props.isBusy(false);
       return this.setState({searchResults: [], working: false});
     }
-    const resultCount = 10;
     this.props.isBusy(false);
     this.setState({
-      searchResults: res.results.slice(0, resultCount),
+      searchResults: res.results,
       working: false,
     });
   },
@@ -41,16 +91,14 @@ const SearchBox = React.createClass({
       this.setState({ searchString: searchValue, working: true });
       search
         .movies(searchValue)
+        .then(this.sortAndTrim)
+        .then(this.checkForAdded)
         .then(this.handleSearchResults);
     });
   },
 
   handleHover (id) {
     this.setState({ activeResult: id });
-  },
-
-  handleAddToList (item) {
-    list.add(item);
   },
 
   handleSearchFocus (event) {
@@ -69,12 +117,21 @@ const SearchBox = React.createClass({
     this.refs['search-input'].value = '';
   },
 
+  handleAddToList (result) {
+    this.props.addToList(result);
+    this.refreshResults();
+  },
+
   resultEl (result, index) {
     const imageBase = 'http://image.tmdb.org/t/p/w185/';
     const {activeResult} = this.state;
+    const parentClassNames = [
+      activeResult === result.id ? 'search-result--is-active' : null,
+      result.added ? 'search-result--is-added' : null
+    ];
     return (
       <li
-        className={`search-result ${activeResult === result.id ? 'search-result--is-active' : ''}`}
+        className={`search-result ${parentClassNames.join(' ')}`}
         key={index}
         onMouseOver={this.handleHover.bind(this, result.id)}
         onMouseOut={this.handleHover.bind(this, null)}>
