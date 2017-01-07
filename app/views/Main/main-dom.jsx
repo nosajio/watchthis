@@ -10,7 +10,7 @@ const MainDom = (props) => {
   const {userWatchList, userWatchedList} = state;
 
   return (
-    <section className="main-view">
+    <main className="main-view">
       <UpTop busy={state.busy}>
         <section className="search-box-container">
           <SearchBox
@@ -19,20 +19,20 @@ const MainDom = (props) => {
             addToList={props.handleAddToList}/>
         </section>
       </UpTop>
-      <section className="user-watch-list">
+      <section className="user-watch-list main-tile">
         <header className="section-header">
           <h1>Your watch list</h1>
         </header>
         <MoviesList isBusy={props.busyCallback} list={userWatchList}/>
       </section>
 
-      <section className="user-watched-list">
+      <section className="user-watched-list main-tile">
         <header className="section-header">
           <h1>Movies you've watched</h1>
         </header>
         <MoviesList isBusy={props.busyCallback} list={userWatchedList}/>
       </section>
-    </section>
+    </main>
   )
 }
 

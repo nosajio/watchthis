@@ -6,12 +6,20 @@
 
   .user-watch-list,
   .user-watched-list {
-    padding: 9vh;
+    margin: 9vh;
   }
 
   .section-header {
     h1, h2, h3 {
-      font: 40px $ff-body;
+      font: 600 20px $ff-body;
     }
+  }
+
+  .main-tile {
+    padding: 30px;
+    margin-top: 60px;
+    background: white;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,.05), 0 1px 1px rgba(0,0,0,.1);
+    border-radius: 3px;
   }
 }

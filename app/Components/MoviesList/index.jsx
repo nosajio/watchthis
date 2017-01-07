@@ -29,7 +29,7 @@ const MoviesList = (props) => {
           )}
         </span>
         <span className="movies-list__movie-info">
-          <h2>{movie.title}</h2>
+          <h2 className="movie-title">{movie.title} <span className="movie-title__date">{new Date(movie.release_date).getFullYear()}</span></h2>
         </span>
       </li>
     );

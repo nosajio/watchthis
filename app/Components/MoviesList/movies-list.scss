@@ -24,9 +24,10 @@
     img {
       display: inline-block;
       margin: 0 auto;
-      border-radius: 10px;
+      border-radius: 4px;
       max-height: 400px;
       width: auto;
+      box-shadow: 0 1px 2px 1px rgba(0,0,0,.1), 0 1px 1px rgba(0,0,0,.2);
     }
 
     .movie-cover-placeholder {
@@ -39,10 +40,18 @@
   &__movie-info {
     display: block;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 10px;
+    text-align: left;
 
-    h2 {
+    .movie-title {
       font-size: 33px;
+    }
+
+    .movie-title__date {
+      display: inline-block;
+      margin-left: 10px;
+      color: #a8a8a8;
+      font-size: 22px;
     }
   }
 }
