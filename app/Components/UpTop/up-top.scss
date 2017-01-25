@@ -5,17 +5,19 @@
   flex-flow: column nowrap;
   justify-content: center;
   width: 100%;
-  padding-left: 9vh;
-  padding-right: 9vh;
+  padding-left: 10px;
+  padding-right: 10px;
 
   @media #{$mq-desktop-up} {
     justify-content: space-between;
     flex-flow: row nowrap;
+    padding-left: 9vh;
+    padding-right: 9vh;
   }
 
   .app-logo {
     position: relative;
-    z-index: 200;
+    z-index: 20100;
     display: flex;
     width: 100%;
     flex-flow: row nowrap;
@@ -52,6 +54,9 @@
     width: 100%;
 
     @media #{$mq-desktop-up} {
+      position: absolute;
+      right: 30px;
+      z-index: 29000; // should be above everything
       width: 70%;
     }
   }

@@ -177,7 +177,7 @@ const SearchBox = React.createClass({
             </ul>
           ) : ! _.isEmpty(searchString) && ! working && focussed ? (
             <span className="search-no-results">
-              There are no results for <strong>&quot;{searchString}&quot;</strong> (its not you, its me.)
+              This is kinda lame. There's no results for <strong>&quot;{searchString}&quot;</strong>
             </span>
           ) : null}
           <div className="search-box__exit" onClick={this.handleSearchBlur}></div>
