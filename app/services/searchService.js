@@ -7,7 +7,7 @@ function searchService() {
   return {movies}
 
   function movies(searchStr) {
-    if (_.isEmpty(searchStr) || searchStr.length < 3)  {
+    if (_.isEmpty(searchStr) || searchStr.length < 1)  {
       return Promise.resolve([]);
     }
     return fetch(`/api/search?q=${searchStr}`).then(res => res.json());

@@ -23,6 +23,7 @@
     "node-sass": "^4.1.1",
     "reset-css": "^2.2.0",
     "sass-loader": "^4.1.1",
+    "scroll": "^2.0.0",
     "webpack": "^1.14.0"
   },
   "dependencies": {

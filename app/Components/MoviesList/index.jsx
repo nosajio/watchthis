@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react'
+import scroll from 'scroll';
 
+import Chevron from '../Chevron';
 import './movies-list.scss';
 
 const MoviesList = (props) => {
   const {list} = props;
-
   if (! list) {
     return (
       <div className="movies-list">
@@ -35,11 +36,37 @@ const MoviesList = (props) => {
     );
   };
 
+  let scrollEventListener, currentScrollOffset, listEl;
+
+  const updateScrollOffset = (event) => {
+    const newOffset = event.target.scrollLeft;
+    currentScrollOffset = newOffset;
+  }
+
+  const attachScrollEvent = (el) => {
+    if (! el || scrollEventListener) return;
+    scrollEventListener = el.addEventListener('scroll', updateScrollOffset);
+    listEl = el;
+  };
+
+  const moveScrollPos = (inc) => {
+    if (! inc || ! listEl) return;
+    scroll.left(listEl, listEl.scrollLeft + inc);
+  };
+
   return (
-    <div className="movies-list">
-      <ul className="movies-list__list">
-        {movies.map(movieEl)}
-      </ul>
+    <div className="movies-list__wrapper">
+      <div className="movies-list__chevron movies-list__chevron--left">
+        {movies.length ? <Chevron direction="left" onClick={moveScrollPos.bind(null, -400)}/> : null}
+      </div>
+      <div className="movies-list" ref={attachScrollEvent}>
+        <ul className="movies-list__list">
+          {movies.map(movieEl)}
+        </ul>
+      </div>
+      <div className="movies-list__chevron movies-list__chevron--right">
+        {movies.length ? <Chevron direction="right" onClick={moveScrollPos.bind(null, 400)}/> : null}
+      </div>
     </div>
   )
 }
