@@ -9,11 +9,22 @@ const Main = React.createClass({
       userWatchList: null,
       userWatchedList: null,
       busy: false,
+      activeTimer: null,
+      activeTile: null,
     };
   },
 
   componentWillMount () {
     this.fetchUserLists();
+  },
+
+  handleActiveTile (movie) {
+    if (this.state.activeTimer) {
+      clearTimeout(this.state.activeTimer);
+    }
+    const delay = 400;
+    const activeTimer = setTimeout(() => this.setState({activeTile: movie}), delay)
+    this.setState({ activeTimer });
   },
 
   fetchUserLists () {

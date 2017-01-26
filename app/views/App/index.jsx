@@ -7,7 +7,7 @@ const App = React.createClass({
     if (! children) {
       return (
         <div className="not-found">
-          Can't find that. lollololll
+          Can't find that view.
         </div>
       )
     }

@@ -5,7 +5,7 @@ import Chevron from '../Chevron';
 import './movies-list.scss';
 
 const MoviesList = (props) => {
-  const {list} = props;
+  const {list, setActiveMovie, activeTile} = props;
   if (! list) {
     return (
       <div className="movies-list">
@@ -20,8 +20,14 @@ const MoviesList = (props) => {
 
   const movieEl = (movie, index) => {
     const imageBase = 'http://image.tmdb.org/t/p/w300/';
+    const {activeTile} = props;
+    let activeId = activeTile ? activeTile.id : null;
     return (
-      <li key={index} className="movies-list__movie">
+      <li
+        key={index}
+        onMouseOver={setActiveMovie.bind(null, movie)}
+        onMouseOut={setActiveMovie.bind(null, null)}
+        className={`movies-list__movie ${activeId === movie.id ? 'is-active': ''}`}>
         <span className="movies-list__movie-cover">
           {movie.poster_path ? (
             <img src={`${imageBase}${movie.poster_path}`} alt=""/>
@@ -31,6 +37,14 @@ const MoviesList = (props) => {
         </span>
         <span className="movies-list__movie-info">
           <h2 className="movie-title">{movie.title} <span className="movie-title__date">{new Date(movie.release_date).getFullYear()}</span></h2>
+        </span>
+        <span className="movies-list__interact">
+          <span className="movies-list__option movies-list__option--watched">
+            <strong>Mark as watched</strong>
+          </span>
+          <span className="movies-list__option movies-list__option--remove">
+            <strong>Remove</strong>
+          </span>
         </span>
       </li>
     );

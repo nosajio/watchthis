@@ -57,10 +57,12 @@
   }
 
   &__movie {
+    position: relative;
     display: inline-block;
     width: 25%;
     padding: 30px 30px 0;
     text-align: center;
+    cursor: pointer;
   }
 
   &__movie-cover {
@@ -97,4 +99,36 @@
       font-size: 22px;
     }
   }
+
+  &__interact {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    color: white;
+    cursor: pointer;
+
+    .movies-list__movie.is-active & {
+      display: block;
+    }
+  }
+
+  &__option {
+    display: block;
+    width: 100%;
+
+    &--watched { height: 60%; }
+    &--watched:hover { background: #05601f; }
+    &--remove { height: 40%; }
+    &--remove:hover { background: #b16620; }
+  }
+
+  &__option + &__option {
+    border-top: 1px solid black;
+  }
+
 }
