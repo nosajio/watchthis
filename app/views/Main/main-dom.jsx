@@ -24,6 +24,7 @@ const MainDom = (props) => {
           <h1>Your watch list</h1>
         </header>
         <MoviesList
+          markItem={props.markItem}
           setActiveMovie={props.handleActiveTile}
           activeTile={state.activeTile}
           isBusy={props.busyCallback}
@@ -35,9 +36,10 @@ const MainDom = (props) => {
           <h1>Movies you've watched</h1>
         </header>
         <MoviesList
+          markItem={props.markItem}
           setActiveMovie={props.handleActiveTile}
           activeTile={state.activeTile}
-          isBusy={props.busyCallback} 
+          isBusy={props.busyCallback}
           list={userWatchedList}/>
       </section>
     </main>
