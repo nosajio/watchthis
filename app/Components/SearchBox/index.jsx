@@ -167,6 +167,7 @@ const SearchBox = React.createClass({
           <input
             onChange={this.handleRunSearch}
             onFocus={this.handleSearchFocus}
+            onBlur={this.handleSearchBlur}
             placeholder="Search for a movie..."
             type="text"
             ref="search-input"
