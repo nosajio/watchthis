@@ -1,3 +1,4 @@
+@import '../../styles/animations';
 @import '../../styles/mq';
 
 .movies-list {
@@ -102,15 +103,16 @@
 
   &__interact {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 30px; right: 30px;
+    bottom: 0; left: 30px;
     z-index: 100;
     display: none;
-    width: 100%;
-    height: 100%;
     background: rgba(0, 0, 0, .8);
     color: white;
     cursor: pointer;
+    border-radius: 4px;
+    overflow: hidden;
+    animation: fade-in 200ms both 1 $easeInOutQuart;
 
     .movies-list__movie.is-active & {
       display: block;
@@ -118,13 +120,22 @@
   }
 
   &__option {
-    display: block;
+    display: flex;
+    align-items: center;
     width: 100%;
+    transition: all 400ms $easeInOutQuart;
 
-    &--watched { height: 60%; }
-    &--watched:hover { background: #05601f; }
-    &--remove { height: 40%; }
-    &--remove:hover { background: #b16620; }
+    &--watched { height: 80%; }
+    &--watched:hover { background: #34b95b; }
+    &--remove { height: 20%; }
+    &--remove:hover { background: #ec7448; }
+
+    > strong {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 30px;
+    }
   }
 
   &__option + &__option {

@@ -23,14 +23,22 @@ const MainDom = (props) => {
         <header className="section-header">
           <h1>Your watch list</h1>
         </header>
-        <MoviesList setActiveMovie={props.handleActiveTile} activeTile={state.activeTile} isBusy={props.busyCallback} list={userWatchList}/>
+        <MoviesList
+          setActiveMovie={props.handleActiveTile}
+          activeTile={state.activeTile}
+          isBusy={props.busyCallback}
+          list={userWatchList}/>
       </section>
 
       <section className="user-watched-list main-tile">
         <header className="section-header">
           <h1>Movies you've watched</h1>
         </header>
-        <MoviesList setActiveMovie={props.handleActiveTile} activeTile={state.activeTile} isBusy={props.busyCallback} list={userWatchedList}/>
+        <MoviesList
+          setActiveMovie={props.handleActiveTile}
+          activeTile={state.activeTile}
+          isBusy={props.busyCallback} 
+          list={userWatchedList}/>
       </section>
     </main>
   )
