@@ -10,8 +10,18 @@ function handleEditContentRequest(req, res) {
   if (! params.id) {
     return res.status(400).json({error: 'The :id param is missing: /my-list/:id'});;
   }
-  if (typeof query.watched !== 'undefined') {
-    const contentId = parseInt(params.id);
+  if (! query.flag) {
+    return res.status(400).json({error: 'The `flag` query param is required. Example: ?flag=watched, ?flag=remove etc'});;
+  }
+
+  const contentId = parseInt(params.id);
+  switch (query.flag) {
+    case 'watched': return handleWatched();
+    case 'remove': return handleRemove();
+    default: return handleError();
+  }
+
+  function handleWatched() {
     db.collection('lists')
       .find({name: 'Nosaj List'})
       .toArray((err, doc) => {
@@ -28,6 +38,14 @@ function handleEditContentRequest(req, res) {
         );
         res.status(200).json({ done: true, });
       });
+  }
+
+  function handleRemove() {
+
+  }
+
+  function handleError() {
+
   }
 
 }

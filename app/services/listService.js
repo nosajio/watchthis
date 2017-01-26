@@ -4,7 +4,7 @@ import fetch from 'isomorphic-fetch';
 export default listService();
 
 function listService() {
-  return {get, add}
+  return {get, add, mark}
 
   function get() {
     const request = {
@@ -28,6 +28,18 @@ function listService() {
       cache: 'default',
       mode: 'same-origin'
     };
-    fetch('/api/my-list/content', request).then(res => res.json());
+    return fetch('/api/my-list/content', request).then(res => res.json());
+  }
+
+  function mark(flag, id) {
+    const request = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'default',
+      mode: 'same-origin'
+    };
+    return fetch(`/api/my-list/content/${id}?flag=${flag}`, request).then(res => res.json());
   }
 }

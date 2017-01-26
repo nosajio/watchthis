@@ -11,6 +11,5 @@ api.get('/search',                  handleSearchRequest);
 api.get('/my-list',                 handleListRequest);
 api.post('/my-list/content',        handleAddContentRequest);
 api.put('/my-list/content/:id',     handleEditContentRequest);
-api.delete('/my-list/content/:id',   handleDeleteContentRequest)
 
 module.exports = api;

@@ -68,7 +68,9 @@ const Main = React.createClass({
    * @param {Number} itemId
    */
   markItem (flag, itemId) {
-    console.log(flag, itemId);
+    listService
+      .mark(flag, itemId)
+      .then(res => console.log(res));
   },
 
   /**
