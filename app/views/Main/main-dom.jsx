@@ -24,6 +24,7 @@ const MainDom = (props) => {
           <h1>Your watch list</h1>
         </header>
         <MoviesList
+          name="watch"
           markItem={props.markItem}
           setActiveMovie={props.handleActiveTile}
           activeTile={state.activeTile}
@@ -36,6 +37,7 @@ const MainDom = (props) => {
           <h1>Movies you've watched</h1>
         </header>
         <MoviesList
+          name="watched"
           markItem={props.markItem}
           setActiveMovie={props.handleActiveTile}
           activeTile={state.activeTile}

@@ -5,7 +5,7 @@ import Chevron from '../Chevron';
 import './movies-list.scss';
 
 const MoviesList = (props) => {
-  const {list, setActiveMovie, activeTile, markItem} = props;
+  const {list, setActiveMovie, activeTile, markItem, name} = props;
   if (! list) {
     return (
       <div className="movies-list">
@@ -39,10 +39,16 @@ const MoviesList = (props) => {
           <h2 className="movie-title">{movie.title} <span className="movie-title__date">{new Date(movie.release_date).getFullYear()}</span></h2>
         </span>
         <span className="movies-list__interact">
-          <span onClick={markItem.bind(null, 'watched', movie.id)} className="movies-list__option movies-list__option--watched">
-            <strong>Mark as watched</strong>
-          </span>
-          <span onClick={markItem.bind(null, 'remove', movie.id)} className="movies-list__option movies-list__option--remove">
+          {name === 'watch' ? (
+            <span onClick={markItem.bind(null, 'watched', movie)} className="movies-list__option movies-list__option--watched">
+              <strong>Mark as watched</strong>
+            </span>
+          ) : (
+            <span onClick={markItem.bind(null, 'watch', movie)} className="movies-list__option movies-list__option--watched">
+              <strong>Move to watch list</strong>
+            </span>
+          )}
+          <span onClick={markItem.bind(null, 'remove', movie)} className="movies-list__option movies-list__option--remove">
             <strong>Remove</strong>
           </span>
         </span>
