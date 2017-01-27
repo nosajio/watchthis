@@ -27,7 +27,6 @@ function bootApplication(env, port) {
   // like images, js, css, index.html etc
   app.use(express.static(serverRoot));
 
-
   // Configure logging
   if (env === 'production') {
     const logDir = path.join(__dirname, 'logs');
@@ -36,7 +35,6 @@ function bootApplication(env, port) {
     const logStream = fs.createWriteStream(path.join(logDir, 'access.log'), {flags: 'a'});
     app.use(morgan('combined', {stream: logStream}));
   }
-
 
   // Alwsays send the index file for routes in the react app. Let React handle the routing
   app.get(reactRoutes, (req, res) => {

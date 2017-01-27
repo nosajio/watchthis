@@ -68,9 +68,8 @@ const Main = React.createClass({
    * @param {Number} itemId
    */
   markItem (flag, item) {
-    this.addToList(flag, item);
-    listService
-      .mark(flag, item.id);
+    this.modifyList(flag, item);
+    listService.mark(flag, item.id);
   },
 
   /**
@@ -80,20 +79,29 @@ const Main = React.createClass({
    * @param {String} listName
    * @param {Object} item
    */
-  addToList (listName, item) {
+  modifyList (listName, item) {
     const currentWatchList = this.state.userWatchList;
     const currentWatchedList = this.state.userWatchedList
+    let newWatchList, newWatchedList;
     switch(listName) {
       case 'watched':
         currentWatchedList.unshift(item);
-        let newWatchList = currentWatchList.filter(it => it.id !== item.id);
+        newWatchList = currentWatchList.filter(it => it.id !== item.id);
         this.setState({
           userWatchList: newWatchList,
           userWatchedList: currentWatchedList,
         });
         return;
       case 'watch':
-        this.handleAddToList(item);
+        // this.handleAddToList(item);
+        return;
+      case 'remove':
+        newWatchList = currentWatchList.filter(it => it.id !== item.id);
+        newWatchedList = currentWatchedList.filter(it => it.id !== item.id);
+        this.setState({
+          userWatchList: newWatchList,
+          userWatchedList: newWatchedList,
+        });
         return;
     }
   },

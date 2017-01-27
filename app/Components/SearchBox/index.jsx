@@ -167,7 +167,6 @@ const SearchBox = React.createClass({
           <input
             onChange={this.handleRunSearch}
             onFocus={this.handleSearchFocus}
-            onBlur={this.handleSearchBlur}
             placeholder="Search for a movie..."
             type="text"
             ref="search-input"
@@ -178,7 +177,7 @@ const SearchBox = React.createClass({
             </ul>
           ) : ! _.isEmpty(searchString) && ! working && focussed ? (
             <span className="search-no-results">
-              This is kinda lame. There's no results for <strong>&quot;{searchString}&quot;</strong>
+              This is lame. There's no results for <strong>&quot;{searchString}&quot;</strong>
             </span>
           ) : null}
           <div className="search-box__exit" onClick={this.handleSearchBlur}></div>

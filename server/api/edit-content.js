@@ -18,7 +18,7 @@ function handleEditContentRequest(req, res) {
   switch (query.flag) {
     case 'watched': return handleWatched();
     case 'remove': return handleRemove();
-    default: return handleError();
+    default: return handleError(query.flag);
   }
 
   function handleWatched() {
@@ -41,11 +41,28 @@ function handleEditContentRequest(req, res) {
   }
 
   function handleRemove() {
-
+    db.collection('lists')
+      .find({name: 'Nosaj List'})
+      .toArray((err, doc) => {
+        if (err) {
+          return res.status(500).json({error: err});
+        }
+        const cachedItem = doc[0].towatch.filter(it => it.id === contentId)[0];
+        db.collection('lists').update(
+          {name: 'Nosaj List'},
+          {
+            // Attempt to pull from both lists
+            $pull: {
+              towatch: {id: contentId},
+              watched: {id: contentId}
+            }
+          }
+        );
+        res.status(200).json({ done: true, });
+      });
   }
 
-  function handleError() {
-
+  function handleError(flag) {
+    res.status(404).json({ done: false, message: `No can do. I don't know how to ${flag}` });
   }
-
 }

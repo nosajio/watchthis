@@ -5,7 +5,6 @@ const handleSearchRequest          = require('./search');
 const handleListRequest            = require('./my-list');
 const handleAddContentRequest      = require('./add-content');
 const handleEditContentRequest     = require('./edit-content');
-const handleDeleteContentRequest  = require('./delete-content');
 
 api.get('/search',                  handleSearchRequest);
 api.get('/my-list',                 handleListRequest);

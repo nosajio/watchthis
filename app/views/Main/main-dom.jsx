@@ -9,6 +9,8 @@ const MainDom = (props) => {
   const {state} = props;
   const {userWatchList, userWatchedList} = state;
 
+  if (! userWatchedList || ! userWatchList) return null;
+
   return (
     <main className="main-view">
       <UpTop busy={state.busy}>
@@ -36,13 +38,17 @@ const MainDom = (props) => {
         <header className="section-header">
           <h1>Movies you've watched</h1>
         </header>
-        <MoviesList
-          name="watched"
-          markItem={props.markItem}
-          setActiveMovie={props.handleActiveTile}
-          activeTile={state.activeTile}
-          isBusy={props.busyCallback}
-          list={userWatchedList}/>
+        {userWatchedList.length ? (
+          <MoviesList
+            name="watched"
+            markItem={props.markItem}
+            setActiveMovie={props.handleActiveTile}
+            activeTile={state.activeTile}
+            isBusy={props.busyCallback}
+            list={userWatchedList}/>
+        ) : (
+          <p>To move stuff to your watched list, just press "mark as watched" on any of the movies in your to watch list!</p>
+        )}
       </section>
     </main>
   )

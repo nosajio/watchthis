@@ -1,4 +1,3 @@
-@import '../../styles/animations';
 @import '../../styles/mq';
 
 .movies-list {
@@ -110,9 +109,6 @@
     background: rgba(0, 0, 0, .8);
     color: white;
     cursor: pointer;
-    border-radius: 4px;
-    overflow: hidden;
-    animation: fade-in 200ms both 1 $easeInOutQuart;
 
     .movies-list__movie.is-active & {
       display: block;
@@ -123,18 +119,16 @@
     display: flex;
     align-items: center;
     width: 100%;
-    transition: all 400ms $easeInOutQuart;
 
     &--watched { height: 80%; }
-    &--watched:hover { background: #34b95b; }
+    &--watched:hover { background: #05601f; }
     &--remove { height: 20%; }
-    &--remove:hover { background: #ec7448; }
+    &--remove:hover { background: #b16620; }
 
     > strong {
       display: block;
       width: 100%;
       text-align: center;
-      padding: 30px;
     }
   }
 
