@@ -57,6 +57,7 @@
   padding: 20px;
   max-height: 70vh;
   overflow-y: scroll;
+  color: black;
 }
 
 .search-no-results {
@@ -105,12 +106,14 @@
     display: block;
     width: 100%;
     height: auto;
+    border-radius: 4px;
   }
 
   &__poster .poster-placeholder {
     display: block;
-    height: 278px;
+    height: 218px;
     background: #525252;
+    border-radius: 4px;
   }
 }
 
