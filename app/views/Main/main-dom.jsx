@@ -23,7 +23,7 @@ const MainDom = (props) => {
       </UpTop>
       <section className="user-watch-list main-tile">
         <header className="section-header">
-          <h1>Your watch list</h1>
+          <h1><span className="user-watch-list__counter">{userWatchList.length}</span>To Watch</h1>
         </header>
         <MoviesList
           name="watch"
@@ -36,7 +36,7 @@ const MainDom = (props) => {
 
       <section className="user-watched-list main-tile">
         <header className="section-header">
-          <h1>Movies you've watched</h1>
+          <h1><span className="user-watch-list__counter">{userWatchedList.length}</span>Watched</h1>
         </header>
         {userWatchedList.length ? (
           <MoviesList
