@@ -1,3 +1,4 @@
+@import '../../styles/animations';
 @import '../../styles/mq';
 
 .movies-list {
@@ -11,23 +12,39 @@
   &__chevron {
     position: absolute;
     top: 0px;
-    z-index: 10000;
+    z-index: 20000;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     cursor: pointer;
     width: 120px;
     height: 100%;
+    padding-right: 10px;
+    background: radial-gradient(80px circle, black, transparent 70%);
+    background-repeat: no-repeat;
+    transition: all 200ms $easeInOutQuart;
+
+    &:hover {
+      svg { opacity: 1; }
+    }
 
     &--left {
+      justify-content: flex-start;
+      padding: 0 0 0 10px;
       left: 0;
       right: auto;
-      background: linear-gradient(to right, white, transparent);
+      background-position: -70px 49% /* Compensate for arrow misalignment */;
+
+      &:hover { background-position: -50px 49%; }
+      &:hover > svg { animation: bounce-left 300ms $easeInOutQuart both; }
     }
 
     &--right {
       left: auto;
       right: 0;
-      background: linear-gradient(to left, white, transparent);
+      background-position: 70px 49% /* Compensate for arrow misalignment */;
+
+      &:hover { background-position: 40px 49%; }
+      &:hover > svg { animation: bounce-right 300ms $easeInOutQuart both; }
     }
   }
 
@@ -37,10 +54,9 @@
     height: auto;
     opacity: .7;
     transition: all 300ms ease;
-    &:hover { opacity: 1; }
   }
 
-  &__chevron > svg path { fill: rgb(78, 78, 78); }
+  &__chevron > svg path { fill: white; }
 
   &__empty {
     h2 {
@@ -72,7 +88,7 @@
       border-radius: 4px;
       max-height: 300px;
       width: auto;
-      box-shadow: 0 1px 2px 1px rgba(0,0,0,.1), 0 1px 1px rgba(0,0,0,.2);
+      box-shadow: 0 5px 15px rgba(0,0,0,.5);
     }
 
     .movie-cover-placeholder {
@@ -87,6 +103,7 @@
     width: 100%;
     margin-top: 10px;
     text-align: left;
+    text-shadow: 0 3px 3px rgba(0,0,0,.5);
 
     .movie-title {
       font-size: 33px;
