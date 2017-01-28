@@ -5,14 +5,14 @@
   flex-flow: column nowrap;
   justify-content: center;
   width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 30px 10px 30px;
+  background: black;
 
   @media #{$mq-desktop-up} {
     justify-content: space-between;
     flex-flow: row nowrap;
-    padding-left: 9vh;
-    padding-right: 9vh;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   .app-logo {
